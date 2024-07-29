@@ -88,15 +88,15 @@ Replace <container_id> with the actual container ID or name.
 
 "dbt deps" and raw data load:
 
-   <img src="img/1_raw_data_load_and_dbt_deps.png" width="400">
+   <img src="img/1_raw_data_load_and_dbt_deps.png" width="500">
 
 "dbt run":
 
-   <img src="img/2_dbt_run.png" width="400">
+   <img src="img/2_dbt_run.png" width="500">
 
 "dbt test":
 
-   <img src="img/3_dbt_test.png" width="400">
+   <img src="img/3_dbt_test.png" width="500">
 
 "database materialization":
 
