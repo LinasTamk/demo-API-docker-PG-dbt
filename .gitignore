@@ -6,12 +6,11 @@
 # ignore Files
 #docker-compose.yaml
 325.ipynb
-.env
+#.env
 *.csv
 kaggle.json
 
-Readme_docker_commands.md
-README.md
+#README.md
 
 
 # ignore Folders
@@ -24,7 +23,7 @@ __pycache__
 .vscode
 
 _Archive
-img
+#img
 
 #config
 logs
