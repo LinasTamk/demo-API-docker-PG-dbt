@@ -1,0 +1,56 @@
+services:
+  postgres:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: ${PG_DB_USER}
+      POSTGRES_PASSWORD: ${PG_DB_PASSWORD}
+      POSTGRES_DB: ${PG_DB_NAME}
+    volumes:
+      - postgres-db-volume:/var/lib/postgresql/data
+    ports:
+      - "54320:5432"
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "pg_isready",
+          "-U",
+          "${PG_DB_USER}",
+          "-d",
+          "${PG_DB_NAME}"
+        ]
+      interval: 10s
+      retries: 5
+      start_period: 5s
+    restart: always
+
+  dbt:
+    container_name: dbt
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: dbt_demo1
+    volumes:
+      - ./dbt:/user/app/dbt
+      - ./config/.kaggle:/root/.kaggle
+      - ./config/.dbt:/root/.dbt
+      - ./config/.env:/user/app/config/.env
+      - ./src_py:/user/app/src_py
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      - TYPE_OF_WH_DB=${TYPE_OF_WH_DB} # Postgres DB Type
+      - PG_DB_HOST=${PG_DB_HOST} # Postgres DB Host - postgres_host
+      - PG_DB_USER=${PG_DB_USER} # Postgres DB User - postgres_user
+      - PG_DB_PASSWORD=${PG_DB_PASSWORD} # Postgres DB Password - postgres_password
+      - PG_DB_NAME=${PG_DB_NAME} # Postgres DB Name - postgres_db
+      - PG_DB_SCHEMA=${PG_DB_SCHEMA} # Postgres DB Schema - postgres_schema
+      - PG_DB_PROT=${PG_DB_PROT} # Postgres DB Port - postgres_port
+      - KAGGLE_CSV_FILE_PATH=${KAGGLE_CSV_FILE_PATH} # Kaggle CSV File Path
+      - KAGGLE_CSV_FILE_RENAMED_PATH=${KAGGLE_CSV_FILE_RENAMED_PATH} # Kaggle renamed CSV File Path
+    command: tail -f /dev/null
+    restart: always
+
+volumes:
+  postgres-db-volume:

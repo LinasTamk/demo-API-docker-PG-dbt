@@ -1,0 +1,43 @@
+# does not ignore these Files
+!README.md
+!requirements.txt
+
+
+# ignore Files
+#docker-compose.yaml
+325.ipynb
+.env
+*.csv
+kaggle.json
+
+Readme_docker_commands.md #!
+README.md
+
+
+# ignore Folders
+.venv
+.git
+
+__pycache__
+.Archive
+.ipynb_checkpoints
+.vscode
+
+_Archive
+img
+
+#config
+logs
+backup_db
+#kaggle_files
+
+# From dbt gitignore
+target/
+dbt_modules/
+dbt_packages/
+dbt_utils/
+#logs/
+venv/
+env/
+test.env
+__pycache__

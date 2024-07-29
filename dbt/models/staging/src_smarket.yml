@@ -1,0 +1,21 @@
+version: 1
+
+sources:
+  - name: src_smarket
+    database: "{{ env_var('PG_DB_NAME') }}"
+    schema: "{{ env_var('PG_DB_SCHEMA') }}"
+    tables:
+      - name: smarket_raw
+        columns:
+          - name: product_id
+            description: "product id"
+            data_tests:
+              - not_null
+          - name: order_id
+            description: "order id"
+            data_tests:
+              - not_null
+          - name: customer_id
+            description: "customer id"
+            data_tests:
+              - not_null

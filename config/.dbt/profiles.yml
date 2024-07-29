@@ -1,0 +1,12 @@
+demo-API-docker-PG-dbt:
+  target: dev
+  outputs:
+    dev:
+      type: "{{ env_var('TYPE_OF_WH_DB') }}"
+      host: "{{ env_var('PG_DB_HOST') }}"
+      user: "{{ env_var('PG_DB_USER') }}"
+      pass: "{{ env_var('PG_DB_PASSWORD') }}"
+      dbname: "{{ env_var('PG_DB_NAME') }}"
+      schema: "{{ env_var('PG_DB_SCHEMA') }}"
+      port: "{{ env_var('PG_DB_PROT') | as_number }}"
+      #threads: 1

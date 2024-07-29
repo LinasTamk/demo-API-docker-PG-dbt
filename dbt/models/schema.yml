@@ -1,0 +1,187 @@
+version: 1
+
+models:
+    - name: stg_product
+      description: This model is used to create a new product view with a new product id
+      columns:
+        - name: product_new_id
+          description: New product id
+          data_tests:
+            - not_null
+        - name: product_id
+          description: Product id
+          data_tests:
+              - not_null
+        - name: category
+          description: Category of the product
+        - name: sub_category
+          description: Sub category of the product
+        - name: product_name
+          description: Name of the product
+    - name: stg_customer
+      description: This model is used to create a new customer view with a new customer id
+      columns:
+        - name: customer_new_id
+          description: New customer id
+          data_tests:
+            - not_null
+        - name: customer_id
+          description: Customer id
+          data_tests:
+            - not_null
+        - name: customer_name
+          description: Name of the customer
+          data_tests:
+            - not_null
+        - name: segment
+          description: Segment of the customer
+        - name: country
+          description: Country of the address of the customer
+        - name: city
+          description: City of the address of the customer
+        - name: state
+          description: State of the address of the customer
+        - name: postal_code
+          description: Postal code of the address of the customer
+        - name: region
+          description: Region of the address of the customer
+    - name: stg_order
+      description: This model is used to create a order facts view
+      columns:
+        - name: order_id
+          description: Order id
+          data_tests:
+              - not_null
+        - name: order_date_id
+          description: Order date id
+          data_tests:
+            - not_null
+            - relationships:
+                to: ref('dim_date')
+                field: date_id
+        - name: ship_date_id
+          description: Ship date id
+          data_tests:
+            - not_null
+            - relationships:
+                to: ref('dim_date')
+                field: date_id
+        - name: ship_mode
+          description: Mode of shipping
+        - name: customer_new_id
+          description: New unique customer id
+          data_tests:
+            - not_null
+        - name: product_new_id
+          description: New unique product id
+          data_tests:
+            - not_null
+        - name: sales
+          description: Sales amount
+    - name: dim_date
+      description: This model is used to create a new date table as dimenssion date table
+      columns:
+        - name: date_id
+          description: Date id
+          data_tests:
+            - not_null
+            - unique
+        - name: full_date_description
+          description: Full date description
+        - name: day_of_week
+          description: Day of the week
+        - name: calendar_month
+          description: Month of the year
+        - name: calendar_quarter
+          description: Quarter of the year
+        - name: calendar_year
+          description: Year
+        - name: fiscal_year_month
+          description: Fiscal year month
+        - name: holiday_indicator
+          description: Holiday indicator
+        - name: weekday_indicator
+          description: Weekday indicator
+    - name: dim_product
+      description: This model is used to create a new product table as dimenssion product table
+      columns:
+        - name: product_new_id
+          description: New product id
+          data_tests:
+            - not_null
+            - unique
+        - name: product_id
+          description: Product id
+          data_tests:
+            - not_null
+        - name: category
+          description: Category of the product
+        - name: sub_category
+          description: Sub category of the product
+        - name: product_name
+          description: Name of the product
+    - name: dim_customer
+      description: This model is used to create a new customer table as dimenssion customer table
+      columns:
+        - name: customer_new_id
+          description: New customer id
+          data_tests:
+            - not_null
+            - unique
+        - name: customer_id
+          description: Customer id
+          data_tests:
+            - not_null
+        - name: customer_name
+          description: Name of the customer
+        - name: segment
+          description: Segment of the customer
+        - name: country
+          description: Country of the address of the customer
+        - name: city
+          description: City of the address of the customer
+        - name: state
+          description: State of the address of the customer
+        - name: postal_code
+          description: Postal code of the address of the customer
+        - name: region
+          description: Region of the address of the customer
+    - name: fact_sales
+      description: This model is used to create a sales facts table
+      columns:
+        - name: order_id
+          description: Order id
+          data_tests:
+            - not_null
+        - name: order_date_id
+          description: Order date id
+          data_tests:
+            - not_null
+            - relationships:
+                to: ref('dim_date')
+                field: date_id
+        - name: ship_date_id
+          description: Ship date id
+          data_tests:
+            - not_null
+            - relationships:
+                to: ref('dim_date')
+                field: date_id
+        - name: ship_mode
+          description: Mode of shipping
+        - name: customer_new_id
+          description: New customer id
+          data_tests:
+            - not_null
+            - relationships:
+                to: ref('dim_customer')
+                field: customer_new_id
+        - name: product_new_id
+          description: New product id
+          data_tests:
+            - not_null
+            - relationships:
+                to: ref('dim_product')
+                field: product_new_id
+        - name: sales
+          description: Sales amount
