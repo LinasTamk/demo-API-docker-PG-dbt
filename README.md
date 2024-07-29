@@ -22,7 +22,7 @@ This project demonstrates the use of Docker to run a Python script that interact
     https://dbeaver.com/download/
 - Kaggle API credentials (saved as `kaggle.json`) and placed into 'config/.kaggle" folder.
 - PostgreSQL database and other credentials set in .env file.
-    - for this demo project ".env" file provided with fake credentials and real credentials never should be provided for public.
+    - IMPORTANT: for this demo project ".env" file provided with fake credentials and real credentials never should be provided for public.
 
 ## Installation
 
