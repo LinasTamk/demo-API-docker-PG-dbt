@@ -55,10 +55,13 @@ def main_kaggle(rename, src, dst) -> None:
         app_logger.info(f"The source file {src} does not exist.")
         raise FileNotFoundError
     
-    if os.path.exists(dst):
-        app_logger.info(f"The destination file {dst} exist.")
+    # Get the directory part of the path
+    dst_dir_path = os.path.dirname(dst)
+    
+    if os.path.exists(dst_dir_path):
+        app_logger.info(f"The destination file {dst_dir_path} exist.")
     else:
-        app_logger.info(f"The destination file {dst} does not exist.")
+        app_logger.info(f"The destination file {dst_dir_path} does not exist.")
         raise FileNotFoundError
 
     if rename and src and dst:
