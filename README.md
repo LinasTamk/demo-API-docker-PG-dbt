@@ -4,6 +4,7 @@ This project demonstrates the use of Docker to run a Python script that interact
 
 ## Table of Contents
 
+- [Scope](#usage)
 - [Prerequisites](#prerequisites)
 - [Installation](#installation)
 - [Usage](#usage)
@@ -11,6 +12,18 @@ This project demonstrates the use of Docker to run a Python script that interact
 - [Executing Commands Inside the Container](#executing-commands-inside-the-container)
 - [Project Structure](#project-structure)
 - [License](#license)
+
+## Scope
+
+This demo project is to show:
+ - API usage and data fetch using Python.
+ - Data upload to database using Python.
+ - Usage of Docker containers.
+ - Usage of dbt on container.
+ - Execution of dbt commands using:
+    - docker exec
+    - Python code
+    - command line execution in container for dbt commands
 
 ## Prerequisites
 
